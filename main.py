@@ -23,11 +23,9 @@ if __name__ == '__main__':
     print("Finshed writing lost to HDFS")
     df_filtered = df_filtered.cache()
     df_filtered.count()
-    df_filtered.count()
     grouping = datamanipulation.grouped_df(df_filtered)
-    grouping.show(truncate = False)
+
     grouping = grouping.cache()
-    grouping.count()
     grouping.count()
     print("Writing to HDFS")
     grouping.write.mode("overwrite").partitionBy("StockCode").parquet(f"hdfs://localhost:9000/user/vboxuser/retail_db/lost_revenue/{dt}/lost_revenue_{ts}.parquet")
